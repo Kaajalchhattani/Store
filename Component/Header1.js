@@ -2,16 +2,21 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AddToCart from './AddToCart';
 import { useNavigation } from '@react-navigation/native';
-const Header1 = () => {
+const Header1 = (cart) => {
+    Pressable=()=>{
+        {console.log("items2",cart)}
+        navigation.navigate('AddToCart',  cart)
+    }
     const navigation=useNavigation();
   return (
     <View style={styles.headerContainer}>
+      
       <Text style={styles.headerTitle}>H&M</Text>
       <View style={styles.iconsContainer}>
         <TouchableOpacity  style={styles.iconButton}>
           
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton} onPress={()=>{navigation.navigate('AddToCart')}}>
+        <TouchableOpacity style={styles.iconButton} onPress={()=>Pressable() }>
         <Text style={{color:'white'}} >Cart</Text>
         </TouchableOpacity>
       </View>

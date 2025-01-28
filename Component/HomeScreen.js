@@ -9,10 +9,26 @@ import Header1 from './Header1';
 import AuthorCard from './AuthorCard';
 
 const HomeScreen = () => {
+   const [items, setItems] = useState([]);
   const [authors, setAuthors] = useState([]);
+  
   const [images, setImage] = useState([]);
   const {getAuthors} = useContentful();
   const {getImage} = useContentful2();
+
+    const [cart, setCart] = useState([]); 
+  
+   
+    const handleCartUpdate = (newItem, toggle) => {
+      if (toggle) {
+        
+        setCart((prevCart) => [...prevCart, newItem]);
+      } else {
+       
+        setCart((prevCart) => prevCart.filter(item => item.name !== newItem.name));
+      }
+    };
+    
   useEffect(() => {
     getAuthors().then(response => setAuthors(response));
     getImage().then(response => setImage(response));
@@ -41,8 +57,10 @@ const HomeScreen = () => {
             paddingVertical: 20,
             height: '100%',
           }}>
+            {console.log(authors)}
           {authors.map((author, index) => (
-            <AuthorCard key={index} author={author} />
+            
+            <AuthorCard key={index} author={author} index={index}  cart= {cart} updateCart={handleCartUpdate}/>
           ))}
         </ScrollView>
       </ScrollView>
