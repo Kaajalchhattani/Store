@@ -76,6 +76,9 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 const AddToCart = ( cart ) => {
+  const pressButton=()=>{
+
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Added to Cart</Text>
@@ -87,7 +90,7 @@ const AddToCart = ( cart ) => {
             <Image source={{ uri: item.image }} style={styles.productImage} />
           <View style={styles.button}>
             <Text style={styles.productName}>{item.name}</Text>
-            <TouchableOpacity style={styles.opacity}><Text>Remove from Cart</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opacity} onPress={()=>pressButton()}><Text>Remove from Cart</Text></TouchableOpacity>
             </View>
           </View>
         ))
@@ -139,7 +142,10 @@ const styles = StyleSheet.create({
   opacity:{
     backgroundColor:'lightgrey',
     marginTop:10,
-    
+    marginLeft:50,
+    padding:10,
+    fontWeight:'600',
+
 
   }
 })

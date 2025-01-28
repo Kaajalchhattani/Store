@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AddToCart from './AddToCart';
 import { useNavigation } from '@react-navigation/native';
 const Header1 = (cart) => {
     Pressable=()=>{
-        {console.log("items2",cart)}
+        {console.log("items2",cart,cart.item.length)}
         navigation.navigate('AddToCart',  cart)
     }
+    console.log("cart",cart.item)
+    const [length, setLength] = useState(0);
     const navigation=useNavigation();
+   
+   
+
+   
   return (
     <View style={styles.headerContainer}>
       
@@ -17,7 +23,10 @@ const Header1 = (cart) => {
           
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={()=>Pressable() }>
-        <Text style={{color:'white'}} >Cart</Text>
+        <View style={{ }}>
+            <Text style={styles.button}>{length}</Text>
+            <Text style={{ color: 'white' }}>Cart</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
@@ -45,6 +54,15 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     marginLeft: 20,
+  },
+  button: {
+   
+    backgroundColor: 'red',
+    color: 'white',
+    fontWeight: 'bold',
+    paddingHorizontal: 5,
+    borderRadius: 5,
+    overflow: 'hidden',
   },
 });
 
