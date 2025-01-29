@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import Header1 from './Header1'
 import AddToCart from './AddToCart'
 
-const AuthorCard = ({ author ,cart , updateCart,setLength}) => {
+const AuthorCard = ({ author ,cart , updateCart,length,setLength}) => {
     
     const [new1, setnew1] = useState([]);
     const [toggle,setToggle]=useState(true)
@@ -17,12 +17,12 @@ const AuthorCard = ({ author ,cart , updateCart,setLength}) => {
          
           updateCart(newItem, true);   
           setText('Remove from Cart');
-          setLength('+')
+          setLength(length+1)
           setToggle(false);
         } else {
           
           updateCart(newItem, false); 
-          setLength('-')
+          setLength(length-1)
           setToggle(true);
           setText('Add To Cart');
         }
@@ -48,7 +48,7 @@ const AuthorCard = ({ author ,cart , updateCart,setLength}) => {
     >
         <View style={{display:'none'}}>
             {console.log("length",cart,length)}
-     <Header1 cart={cart} setlength={length} ></Header1>
+     <Header1 cart={cart} length={length} ></Header1>
         </View>
      
       <ImageBackground

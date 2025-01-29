@@ -30,10 +30,8 @@ const HomeScreen = () => {
       }
     };
     const handleLength=(length)=>{
-     if(length=='+')
-      setLength(length+1)
-    else
-    setLength(length-1)
+      setLength(length)
+
     }
 
     
@@ -70,7 +68,7 @@ const HomeScreen = () => {
             {console.log(authors)}
           {authors.map((author, index) => (
             
-            <AuthorCard key={index} author={author} index={index}  cart= {cart} updateCart={handleCartUpdate}  setLength={handleLength}/>
+            <AuthorCard key={index} author={author} index={index}  cart= {cart} updateCart={handleCartUpdate} length={length} setLength={handleLength}/>
           ))}
         </ScrollView>
       </ScrollView>
