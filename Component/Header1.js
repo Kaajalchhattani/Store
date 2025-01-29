@@ -2,15 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AddToCart from './AddToCart';
 import { useNavigation } from '@react-navigation/native';
-const Header1 = (cart) => {
+
+
+const Header1 = ({cart,length}) => {
+const [text,setText]=useState(length)
+
+useEffect(()=>{
+setText(length)
+},[length])
+
     Pressable=()=>{
-        {console.log("items2",cart,cart.item.length)}
+        {console.log("items2",cart,length)}
         navigation.navigate('AddToCart',  cart)
     }
-    console.log("cart",cart.item)
-    const [length, setLength] = useState(0);
-    const navigation=useNavigation();
+    console.log("cart",cart,length)
    
+    const navigation=useNavigation();
+  
    
 
    
@@ -24,7 +32,9 @@ const Header1 = (cart) => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={()=>Pressable() }>
         <View style={{ }}>
-            <Text style={styles.button}>{length}</Text>
+            <Text style={styles.button}>
+              {console.log("text",text)}
+              {0}</Text>
             <Text style={{ color: 'white' }}>Cart</Text>
           </View>
         </TouchableOpacity>
@@ -58,7 +68,7 @@ const styles = StyleSheet.create({
   button: {
    
     backgroundColor: 'red',
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
     paddingHorizontal: 5,
     borderRadius: 5,

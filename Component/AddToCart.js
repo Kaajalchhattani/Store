@@ -75,22 +75,22 @@ export default AddToCart;*/
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const AddToCart = ( cart ) => {
-  const pressButton=()=>{
-
+const AddToCart = ( cart) => {
+  const pressButton=({image,name,toggle})=>{
+updateCart(image,name,toggle)
   }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Added to Cart</Text>
-        {console.log("cart.item",cart.route.params.item)}
+        {console.log("cart.item",cart)}
         
-        {(cart.route.params.item.length>0)?
-        (cart.route.params.item.map((item, index) => (
+       {(cart.route.params.length>0)?
+        (cart.route.params.map((item, index) => (
           <View key={index} style={styles.item}>
             <Image source={{ uri: item.image }} style={styles.productImage} />
           <View style={styles.button}>
             <Text style={styles.productName}>{item.name}</Text>
-            <TouchableOpacity style={styles.opacity} onPress={()=>pressButton()}><Text>Remove from Cart</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opacity} onPress={()=>pressButton(item.image,item.name,item.toggle)}><Text>Remove from Cart</Text></TouchableOpacity>
             </View>
           </View>
         ))

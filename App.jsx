@@ -6,6 +6,7 @@ import HomeScreen from './Component/HomeScreen';
 import AddToCart from './Component/AddToCart';
 
 const Stack=createNativeStackNavigator();
+
 const App = () => {
   return (
     <NavigationContainer>

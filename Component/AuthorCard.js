@@ -2,8 +2,9 @@ import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Header1 from './Header1'
+import AddToCart from './AddToCart'
 
-const AuthorCard = ({ author ,cart , updateCart}) => {
+const AuthorCard = ({ author ,cart , updateCart,setLength}) => {
     
     const [new1, setnew1] = useState([]);
     const [toggle,setToggle]=useState(true)
@@ -16,10 +17,12 @@ const AuthorCard = ({ author ,cart , updateCart}) => {
          
           updateCart(newItem, true);   
           setText('Remove from Cart');
+          setLength('+')
           setToggle(false);
         } else {
           
           updateCart(newItem, false); 
+          setLength('-')
           setToggle(true);
           setText('Add To Cart');
         }
@@ -28,7 +31,7 @@ const AuthorCard = ({ author ,cart , updateCart}) => {
   
    
     useEffect(() => {
-      console.log("Updated items:", cart);
+      console.log("Updated items:", cart,length);
     }, [cart]);
  
  
@@ -44,9 +47,10 @@ const AuthorCard = ({ author ,cart , updateCart}) => {
       }}
     >
         <View style={{display:'none'}}>
-            {console.log("items",cart)}
-     <Header1 item={cart}></Header1>
+            {console.log("length",cart,length)}
+     <Header1 cart={cart} setlength={length} ></Header1>
         </View>
+     
       <ImageBackground
         source={{ uri: `https:${author.shareImages[0].fields.file.url}` }}
         style={{

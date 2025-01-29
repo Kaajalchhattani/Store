@@ -7,11 +7,12 @@ import SliderCard from './SliderCard';
 import useContentful2 from './useContentful2';
 import Header1 from './Header1';
 import AuthorCard from './AuthorCard';
+import AddToCart from './AddToCart';
 
 const HomeScreen = () => {
    const [items, setItems] = useState([]);
   const [authors, setAuthors] = useState([]);
-  
+  const[length,setLength]=useState(0);
   const [images, setImage] = useState([]);
   const {getAuthors} = useContentful();
   const {getImage} = useContentful2();
@@ -28,6 +29,13 @@ const HomeScreen = () => {
         setCart((prevCart) => prevCart.filter(item => item.name !== newItem.name));
       }
     };
+    const handleLength=(length)=>{
+     if(length=='+')
+      setLength(length+1)
+    else
+    setLength(length-1)
+    }
+
     
   useEffect(() => {
     getAuthors().then(response => setAuthors(response));
@@ -35,7 +43,9 @@ const HomeScreen = () => {
   }, []);
 
   return (
+    
     <View style={{flex: 1}}>
+      
       <Header1></Header1>
       <ScrollView
         horizontal
@@ -60,13 +70,14 @@ const HomeScreen = () => {
             {console.log(authors)}
           {authors.map((author, index) => (
             
-            <AuthorCard key={index} author={author} index={index}  cart= {cart} updateCart={handleCartUpdate}/>
+            <AuthorCard key={index} author={author} index={index}  cart= {cart} updateCart={handleCartUpdate}  setLength={handleLength}/>
           ))}
         </ScrollView>
       </ScrollView>
 
       
     </View>
+   
   );
 };
 
